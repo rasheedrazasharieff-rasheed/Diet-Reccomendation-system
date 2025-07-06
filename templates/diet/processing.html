@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="processing-container">
+    <div class="processing-card">
+        <div class="loader"></div>
+        <h2>Analyzing Your Data</h2>
+        <p>We're calculating your nutritional needs and creating a customized meal plan just for you.</p>
+        <p>This will only take a few moments...</p>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Define URLs for the JavaScript file to use
+    var mealPlanUrl = "{{ url_for('main.meal_plan') }}";
+    var dietFormUrl = "{{ url_for('main.diet_form') }}";
+</script>
+<script src="{{ url_for('static', filename='js/processing.js') }}"></script>
+{% endblock %}
+

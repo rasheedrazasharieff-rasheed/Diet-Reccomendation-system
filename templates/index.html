@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="welcome-container">
+    <div class="welcome-card">
+        <h2>Welcome to the Diet Recommendation System</h2>
+        <p>Please sign in or create an account to generate personalized meal plans.</p>
+        <div class="welcome-buttons">
+            <a href="{{ url_for('auth.login') }}" class="btn-primary">Login</a>
+            <a href="{{ url_for('auth.signup') }}" class="btn-primary">Sign Up</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="hero">
+    <h1>Your Personalized Meal Plan</h1>
+    <p>Based on your health profile and goals</p>
+</div>
+
+<div class="metrics-grid">
+    <div class="metric-card">
+        <h3>BMI</h3>
+        <div class="metric-value">{{ data.bmi }}</div>
+        <div class="metric-status">{{ data.status }}</div>
+    </div>
+
+    <div class="metric-card">
+        <h3>Daily Calories</h3>
+        <div class="metric-value">{{ data.caloric_needs }} kcal/day</div>
+    </div>
+
+    <div class="metric-card">
+        <h3>Weight Projection</h3>
+        <div class="metric-value">
+            Expected loss: {{ data.estimated_weight_loss }} kg<br>
+            New weight: {{ data.estimated_new_weight }} kg
+        </div>
+    </div>
+</div>
+
+<div class="meal-plan">
+    <h2>Your 7-Day Meal Plan</h2>
+    <div class="weekly-plan">
+        {% for day in data.weekly_plan %}
+        <div class="day-plan">
+            <h3>Day {{ day.day }}</h3>
+            <div class="meals-grid">
+                <div class="meal-card">
+                    <h4>Breakfast</h4>
+                    {% for meal in day.breakfast %}
+                    <div class="meal-item">
+                        <div class="meal-item-name">{{ meal.food_item }}</div>
+                        <div class="meal-item-details">
+                            {{ meal.calories }} kcal | {{ meal.serving_size }}
+                            <br>
+                            P: {{ meal.protein }}g | F: {{ meal.fat }}g | C: {{ meal.carbs }}g | Fiber: {{ meal.fiber }}g
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="meal-card">
+                    <h4>Lunch</h4>
+                    {% for meal in day.lunch %}
+                    <div class="meal-item">
+                        <div class="meal-item-name">{{ meal.food_item }}</div>
+                        <div class="meal-item-details">
+                            {{ meal.calories }} kcal | {{ meal.serving_size }}
+                            <br>
+                            P: {{ meal.protein }}g | F: {{ meal.fat }}g | C: {{ meal.carbs }}g | Fiber: {{ meal.fiber }}g
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="meal-card">
+                    <h4>Dinner</h4>
+                    {% for meal in day.dinner %}
+                    <div class="meal-item">
+                        <div class="meal-item-name">{{ meal.food_item }}</div>
+                        <div class="meal-item-details">
+                            {{ meal.calories }} kcal | {{ meal.serving_size }}
+                            <br>
+                            P: {{ meal.protein }}g | F: {{ meal.fat }}g | C: {{ meal.carbs }}g | Fiber: {{ meal.fiber }}g
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="daily-total">
+                Total calories: {{ day.total_calories }} kcal
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="action-buttons">
+    <a href="{{ url_for('main.diet_form') }}" class="btn-primary">Create New Plan</a>
+    <a href="{{ url_for('main.profile') }}" class="btn-primary">Back to Profile</a>
+</div>
+{% endblock %}
+
